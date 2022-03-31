@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
+import { signInUser, signupUser } from '../services/users';
 
-export default function Home() {
+export default function Home({ setCurrentUser }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [accountExists, setAccountExistence] = useState('true');
@@ -12,12 +13,23 @@ export default function Home() {
     setAccountExistence('false');
   };
 
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (accountExists === 'true') {
+      const resp = await signInUser({ email, password });
+      setCurrentUser(resp.email);
+    } else {
+      const resp = await signupUser({ email, password });
+      setCurrentUser(resp.email);
+    }
+  };
+
   return (
     <div>
       Home
       <div>
-        <div onSubmit={setSignInTrue}>Sign In</div>
-        <div onSubmit={setSignInFalse}>Sign Up</div>
+        <div onClick={setSignInTrue}>Sign In</div>
+        <div onClick={setSignInFalse}>Sign Up</div>
         <form onSubmit={handleSubmit}>
           <label>
             {' '}
@@ -29,7 +41,7 @@ export default function Home() {
             Password
             <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
           </label>
-          <button> SignUp </button>
+          <button> Submit </button>
         </form>
       </div>
     </div>
