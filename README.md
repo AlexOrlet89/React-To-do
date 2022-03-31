@@ -1,5 +1,7 @@
 # Alchemy React Base Template
 
+Alright, there are two pages to this , a home page with a 'sign in' and a 'sign up', a form with email and password and a button which will have handlers outside of our return statements, godbless it, and which will, after passing a trycatch, will push the user onto the next page. the email and password will be fed into our users.js functions in our
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
 Use this template for all your "from scratch" deliverables. To start, simply run
