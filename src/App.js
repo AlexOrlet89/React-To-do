@@ -1,8 +1,8 @@
 import { useState } from 'react/cjs/react.development';
-import TodoList from '../../../../my documents/alchemy/React-To-do/src/views/TodoList';
 import './App.css';
 import { getUser } from './services/users';
 import Home from './views/Home';
+import TodoList from './views/TodoList';
 
 function App() {
   const [currentUser, setCurrentUser] = useState(getUser());
