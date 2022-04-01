@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 import { logout, signInUser, signupUser } from '../services/users';
 
 export default function Home({ setCurrentUser }) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [accountExists, setAccountExistence] = useState('true');
+  const history = useHistory();
 
   const setSignInTrue = () => {
     console.log('sign in');
@@ -26,11 +28,13 @@ export default function Home({ setCurrentUser }) {
     if (accountExists === 'true') {
       const resp = await signInUser({ email, password });
       console.log(resp);
-      // setCurrentUser(resp.email);
+      setCurrentUser(resp.email);
+      history.push('/todolist');
     } else {
       const resp = await signupUser({ email, password });
       console.log('signup', resp);
       setCurrentUser(resp.email);
+      history.push('/todolist');
     }
   };
 

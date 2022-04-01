@@ -1,4 +1,5 @@
 import { Switch } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { Route } from 'react-router-dom';
 import { BrowserRouter } from 'react-router-dom';
 import { useState } from 'react/cjs/react.development';
@@ -18,7 +19,7 @@ function App() {
             <Home setCurrentUser={setCurrentUser} />
           </Route>
           <Route exact path="/todolist">
-            <TodoList currentUser={currentUser} />
+            {currentUser ? <TodoList currentUser={currentUser} /> : <Redirect to="/signin" />}
           </Route>
         </Switch>
       </div>
