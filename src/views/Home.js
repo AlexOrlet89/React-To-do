@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { signInUser, signupUser } from '../services/users';
+import { logout, signInUser, signupUser } from '../services/users';
 
 export default function Home({ setCurrentUser }) {
   const [email, setEmail] = useState('');
@@ -13,6 +13,11 @@ export default function Home({ setCurrentUser }) {
   const setSignInFalse = () => {
     console.log('sign up');
     setAccountExistence('false');
+  };
+
+  const handleLogout = async () => {
+    console.log('log out');
+    await logout();
   };
 
   const handleSubmit = async (e) => {
@@ -48,6 +53,7 @@ export default function Home({ setCurrentUser }) {
           </label>
           <button> Submit </button>
         </form>
+        <button onClick={handleLogout}> Logout </button>
       </div>
     </div>
   );

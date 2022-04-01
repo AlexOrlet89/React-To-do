@@ -5,7 +5,6 @@ import { createTodo, getTodos } from '../services/todos';
 export default function TodoList({ currentUser }) {
   const [todos, setTodos] = useState([]);
   const [todo, newTodo] = useState('');
-  console.log('current user', currentUser);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -33,10 +32,7 @@ export default function TodoList({ currentUser }) {
           </form>
         </div>
         {todos.map((todo) => (
-          <p key={todo.id}>
-            {todo.id}
-            {currentUser}
-          </p>
+          <p key={todo.id}>{todo.id}</p>
         ))}
       </div>
     </div>
