@@ -15,3 +15,10 @@ export async function createTodo(todo) {
 
   return checkError(response);
 }
+
+export async function completeTodo(todo) {
+  const todoid = todo.id;
+  const response = await client.from('ToDoList').update({ complete: 'true' }).eq('id', `${todoid}`);
+
+  return checkError(response);
+}

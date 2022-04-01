@@ -1,6 +1,8 @@
 import React from 'react';
 import { useEffect, useState } from 'react/cjs/react.development';
-import { createTodo, getTodos } from '../services/todos';
+import { completeTodo, createTodo, getTodos } from '../services/todos';
+import ListItem from './ListItem';
+import './Todolist.css';
 
 export default function TodoList({ currentUser }) {
   const [todos, setTodos] = useState([]);
@@ -20,6 +22,10 @@ export default function TodoList({ currentUser }) {
     setTodos((prevState) => [...prevState, newTodo]);
   };
 
+  function handleComplete(todo) {
+    console.log(todos, todo);
+  }
+
   return (
     <div>
       TodoList
@@ -32,7 +38,7 @@ export default function TodoList({ currentUser }) {
           </form>
         </div>
         {todos.map((todo) => (
-          <p key={todo.id}>{todo.id}</p>
+          <ListItem key={todo.id} todo={todo} />
         ))}
       </div>
     </div>
