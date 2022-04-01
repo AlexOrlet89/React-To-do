@@ -5,6 +5,7 @@ import { createTodo, getTodos } from '../services/todos';
 export default function TodoList({ currentUser }) {
   const [todos, setTodos] = useState([]);
   const [todo, newTodo] = useState('');
+  console.log('current user', currentUser);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -16,8 +17,8 @@ export default function TodoList({ currentUser }) {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log('handlesubmit');
-    createTodo(todo);
+    const newTodo = await createTodo(todo);
+    setTodos((prevState) => [...prevState, newTodo]);
   };
 
   return (
@@ -32,7 +33,10 @@ export default function TodoList({ currentUser }) {
           </form>
         </div>
         {todos.map((todo) => (
-          <p key={todo.id}>{todo.id}</p>
+          <p key={todo.id}>
+            {todo.id}
+            {currentUser}
+          </p>
         ))}
       </div>
     </div>

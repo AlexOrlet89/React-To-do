@@ -8,7 +8,10 @@ export async function getTodos() {
 
 export async function createTodo(todo) {
   console.log(todo);
-  const response = await client.from('ToDoList').insert([{ task: todo }]);
+  const response = await client
+    .from('ToDoList')
+    .insert([{ task: todo }])
+    .single();
 
   return checkError(response);
 }
