@@ -7,19 +7,24 @@ export default function Home({ setCurrentUser }) {
   const [accountExists, setAccountExistence] = useState('true');
 
   const setSignInTrue = () => {
+    console.log('sign in');
     setAccountExistence('true');
   };
   const setSignInFalse = () => {
+    console.log('sign up');
     setAccountExistence('false');
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log('submit', email, password);
     if (accountExists === 'true') {
       const resp = await signInUser({ email, password });
-      setCurrentUser(resp.email);
+      console.log(resp);
+      // setCurrentUser(resp.email);
     } else {
       const resp = await signupUser({ email, password });
+      console.log('signup', resp);
       setCurrentUser(resp.email);
     }
   };
@@ -28,16 +33,18 @@ export default function Home({ setCurrentUser }) {
     <div>
       Home
       <div>
-        <div onClick={setSignInTrue}>Sign In</div>
+        <div className="" onClick={setSignInTrue}>
+          Sign In
+        </div>
         <div onClick={setSignInFalse}>Sign Up</div>
         <form onSubmit={handleSubmit}>
           <label>
             Email:
-            <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
+            <input type="email" onChange={(e) => setEmail(e.target.value)} />
           </label>
           <label>
             Password:
-            <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
+            <input type="password" onChange={(e) => setPassword(e.target.value)} />
           </label>
           <button> Submit </button>
         </form>
