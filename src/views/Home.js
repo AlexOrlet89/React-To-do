@@ -32,13 +32,11 @@ export default function Home({ setCurrentUser }) {
         <div onClick={setSignInFalse}>Sign Up</div>
         <form onSubmit={handleSubmit}>
           <label>
-            {' '}
             Email:
             <input type="email" value={email} onChange={(e) => setEmail(e.target.value)} />
           </label>
           <label>
-            {' '}
-            Password
+            Password:
             <input type="password" value={password} onChange={(e) => setPassword(e.target.value)} />
           </label>
           <button> Submit </button>
