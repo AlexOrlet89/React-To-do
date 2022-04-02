@@ -22,10 +22,6 @@ export default function TodoList({ currentUser }) {
     setTodos((prevState) => [...prevState, newTodo]);
   };
 
-  function handleComplete(todo) {
-    console.log(todos, todo);
-  }
-
   return (
     <div>
       TodoList

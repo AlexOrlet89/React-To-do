@@ -16,10 +16,14 @@ function App() {
       <div className="App">
         <Switch>
           <Route exact path="/">
-            <Home setCurrentUser={setCurrentUser} />
+            {currentUser ? (
+              <Redirect to="/todolist"></Redirect>
+            ) : (
+              <Home setCurrentUser={setCurrentUser} />
+            )}
           </Route>
           <Route exact path="/todolist">
-            {currentUser ? <TodoList currentUser={currentUser} /> : <Redirect to="/signin" />}
+            {currentUser ? <TodoList currentUser={currentUser} /> : <Redirect to="/" />}
           </Route>
         </Switch>
       </div>
