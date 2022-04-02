@@ -8,13 +8,19 @@ export default function TodoList({ currentUser }) {
   const [todos, setTodos] = useState([]);
   const [todo, newTodo] = useState('');
 
+  const handleComplete = async (todo) => {
+    completeTodo(todo);
+    const data = await getTodos();
+    setTodos(data);
+  };
+
   useEffect(() => {
     const fetchData = async () => {
       const data = await getTodos();
       setTodos(data);
     };
     fetchData();
-  }, []);
+  }, [todo]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -34,7 +40,7 @@ export default function TodoList({ currentUser }) {
           </form>
         </div>
         {todos.map((todo) => (
-          <ListItem key={todo.id} todo={todo} />
+          <ListItem key={todo.id} todo={todo} handleComplete={() => handleComplete(todo)} />
         ))}
       </div>
     </div>

@@ -1,15 +1,6 @@
 import React from 'react';
-import { useState } from 'react/cjs/react.development';
-import { completeTodo } from '../services/todos';
 
-export default function ListItem({ todo }) {
-  const [isComplete, setComplete] = useState(false);
-
-  const handleComplete = async () => {
-    setComplete(true);
-    completeTodo(todo);
-  };
-
+export default function ListItem({ todo, handleComplete }) {
   return (
     <div>
       <div
