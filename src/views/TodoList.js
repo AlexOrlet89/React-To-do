@@ -4,7 +4,7 @@ import { completeTodo, createTodo, getTodos } from '../services/todos';
 import ListItem from './ListItem';
 import './Todolist.css';
 
-export default function TodoList({ currentUser }) {
+export default function TodoList() {
   const [todos, setTodos] = useState([]);
   const [todo, newTodo] = useState('');
 
