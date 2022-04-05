@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 import { logout, signInUser, signupUser } from '../services/users';
+import './Todolist.css';
 
 export default function Home({ setCurrentUser }) {
   const [email, setEmail] = useState('');
@@ -9,11 +10,11 @@ export default function Home({ setCurrentUser }) {
   const history = useHistory();
 
   const setSignInTrue = () => {
-    // console.log('sign in');
+    console.log('sign in');
     setAccountExistence('true');
   };
   const setSignInFalse = () => {
-    // console.log('sign up');
+    console.log('sign up');
     setAccountExistence('false');
   };
 
@@ -40,13 +41,17 @@ export default function Home({ setCurrentUser }) {
 
   return (
     <div>
-      Home
+      <h2>Home</h2>
       <div>
-        <div className="" onClick={setSignInTrue}>
-          Sign In
+        <div className="signinsignup">
+          <div className={accountExists === 'true' ? 'active' : ''} onClick={setSignInTrue}>
+            Sign In
+          </div>
+          <div className={accountExists === 'false' ? 'active' : ''} onClick={setSignInFalse}>
+            Sign Up
+          </div>
         </div>
-        <div onClick={setSignInFalse}>Sign Up</div>
-        <form onSubmit={handleSubmit}>
+        <form className="authform" onSubmit={handleSubmit}>
           <label>
             Email:
             <input type="email" onChange={(e) => setEmail(e.target.value)} />
@@ -57,7 +62,6 @@ export default function Home({ setCurrentUser }) {
           </label>
           <button> Submit </button>
         </form>
-        <button onClick={handleLogout}> Logout </button>
       </div>
     </div>
   );

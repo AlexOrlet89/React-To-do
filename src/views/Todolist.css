@@ -8,3 +8,20 @@
 .complete {
   text-decoration: line-through;
 }
+
+.active {
+  background-color: aqua;
+}
+.authform {
+  background-color: aqua;
+}
+
+.signinsignup {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-around;
+  margin-left: 25%;
+  margin-right: 25%;
+  padding-bottom: 15px;
+}
