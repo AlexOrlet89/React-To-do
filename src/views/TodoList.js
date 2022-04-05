@@ -1,5 +1,4 @@
-import React from 'react';
-import { useEffect, useState } from 'react/cjs/react.development';
+import React, { useEffect, useState } from 'react';
 import { completeTodo, createTodo, getTodos } from '../services/todos';
 import ListItem from './ListItem';
 import './Todolist.css';

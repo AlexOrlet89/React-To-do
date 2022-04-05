@@ -1,8 +1,8 @@
+import { useState } from 'react';
 import { Switch } from 'react-router-dom';
 import { Redirect } from 'react-router-dom';
 import { Route } from 'react-router-dom';
 import { BrowserRouter } from 'react-router-dom';
-import { useState } from 'react/cjs/react.development';
 import './App.css';
 import { getUser } from './services/users';
 import Home from './views/Home';
