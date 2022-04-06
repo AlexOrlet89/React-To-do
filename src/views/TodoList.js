@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
+import { useUserContext } from '../context/UserContext';
 import { completeTodo, createTodo, getTodos } from '../services/todos';
+import { logout } from '../services/users';
 import ListItem from './ListItem';
 import './Todolist.css';
 
 export default function TodoList() {
   const [todos, setTodos] = useState([]);
-  const [todo, newTodo] = useState('');
+  const [newTodo, setNewTodo] = useState('');
+  const { currentUser } = useUserContext();
+  // console.log(currentUser);
 
   const handleComplete = async (todo) => {
     completeTodo(todo);
@@ -19,22 +23,34 @@ export default function TodoList() {
       setTodos(data);
     };
     fetchData();
-  }, [todo]);
+  }, [newTodo]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const newTodo = await createTodo(todo);
-    setTodos((prevState) => [...prevState, newTodo]);
+    const newerTodo = await createTodo(newTodo);
+    setTodos((prevState) => [...prevState, newerTodo]);
+    setNewTodo('');
+  };
+
+  const handleLogout = async () => {
+    // console.log('log out');
+    await logout();
   };
 
   return (
     <div>
-      TodoList
+      <h2>{`${currentUser} TodoList`}</h2>
       <div>
+        <button onClick={handleLogout}>Logout</button>
         <div>
           {' '}
           <form onSubmit={handleSubmit}>
-            <input name="todo" onChange={(e) => newTodo(e.target.value)} required />
+            <input
+              name="todo"
+              value={newTodo}
+              onChange={(e) => setNewTodo(e.target.value)}
+              required
+            />
             <button>Add todo</button>
           </form>
         </div>

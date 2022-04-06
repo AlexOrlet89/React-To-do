@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
-import { logout, signInUser, signupUser } from '../services/users';
+import { signInUser, signupUser } from '../services/users';
 import './Todolist.css';
 
 export default function Home({ setCurrentUser }) {
@@ -10,17 +10,12 @@ export default function Home({ setCurrentUser }) {
   const history = useHistory();
 
   const setSignInTrue = () => {
-    console.log('sign in');
+    // console.log('sign in');
     setAccountExistence('true');
   };
   const setSignInFalse = () => {
-    console.log('sign up');
+    // console.log('sign up');
     setAccountExistence('false');
-  };
-
-  const handleLogout = async () => {
-    // console.log('log out');
-    await logout();
   };
 
   const handleSubmit = async (e) => {

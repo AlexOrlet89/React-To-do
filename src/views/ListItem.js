@@ -8,7 +8,7 @@ export default function ListItem({ todo, handleComplete }) {
         key={todo.id}
         onClick={handleComplete}
       >
-        <p>{todo.id}</p>
+        <p>{todo.task}</p>
       </div>
     </div>
   );
