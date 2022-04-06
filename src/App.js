@@ -1,24 +1,33 @@
-import logo from './logo.svg';
+import { useState } from 'react';
+import { Switch } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
+import { Route } from 'react-router-dom';
+import { BrowserRouter } from 'react-router-dom';
 import './App.css';
+import { getUser } from './services/users';
+import Home from './views/Home';
+import TodoList from './views/TodoList';
 
 function App() {
+  const [currentUser, setCurrentUser] = useState(getUser());
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <BrowserRouter>
+      <div className="App">
+        <Switch>
+          <Route exact path="/">
+            {currentUser ? (
+              <Redirect to="/todolist"></Redirect>
+            ) : (
+              <Home setCurrentUser={setCurrentUser} />
+            )}
+          </Route>
+          <Route exact path="/todolist">
+            {currentUser ? <TodoList currentUser={currentUser} /> : <Redirect to="/" />}
+          </Route>
+        </Switch>
+      </div>
+    </BrowserRouter>
   );
 }
 
